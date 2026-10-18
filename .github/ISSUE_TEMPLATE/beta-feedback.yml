@@ -17,7 +17,7 @@ body:
         - Claude mobile
         - Claude Code
         - ChatGPT (web)
-        - Other MCP client
+        - Other
     validations:
       required: true
   - type: input

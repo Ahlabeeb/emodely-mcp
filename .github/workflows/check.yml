@@ -32,8 +32,3 @@ jobs:
           npm install -g @anthropic-ai/claude-code@2.1.285
           claude plugin validate .
           claude plugin validate ./plugins/emodely-engine --strict
-      - name: Build the claude.ai upload zip
-        run: |
-          zip=$(bash scripts/package-plugin.sh)
-          unzip -l "$zip"
-          unzip -l "$zip" | grep -q '.claude-plugin/plugin.json'

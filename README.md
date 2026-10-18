@@ -29,7 +29,12 @@ Results come from the eModely Engine, not from an AI estimate. If the engine is 
 
 ## Connect
 
-eModely works with AI assistants that support remote MCP connectors with sign-in. In each case you add the connector URL once and sign in with your eModely account.
+You add the connector URL once and sign in with your eModely account. There is nothing to download or install.
+
+**Supported assistants and apps:**
+
+- **Claude:** claude.ai, the desktop app and the mobile apps. Add the connector on claude.ai or in the desktop app; it then appears in the mobile apps.
+- **ChatGPT:** add the connector on chatgpt.com (web). Availability and write access depend on the ChatGPT plan. ChatGPT does not currently allow custom connectors to be added in its mobile apps, and eModely does not support use from those apps at present.
 
 ### Claude (web and desktop app)
 
@@ -38,13 +43,15 @@ eModely works with AI assistants that support remote MCP connectors with sign-in
 3. Sign in on engine.emodely.com when the window opens, and select **Allow**.
 4. In a new chat, open **+ > Connectors** and check that **eModely Engine** is switched on.
 
-Custom connectors are available on all Claude plans; the Free plan allows one. On Team and Enterprise plans, an Owner first adds the connector under **Organization settings > Connectors**, and each member then connects with their own eModely account. A connector added on the web or in the desktop app is also available in the Claude mobile apps.
+Custom connectors are available on all Claude plans; the Free plan allows one. On Team and Enterprise plans, an Owner first adds the connector under **Organization settings > Connectors**, and each member then connects with their own eModely account.
+
+**Claude Code:** run `claude mcp add --transport http emodely-engine https://engine.emodely.com/mcp` in a terminal, then run `/mcp`, select `emodely-engine` and choose **Authenticate**.
 
 ### Claude plugin (optional)
 
-The plugin in this repository adds the same connector together with a short skill that helps Claude start eModely tasks. Plugins on claude.ai and in the desktop app require a paid Claude plan.
+The connector is all you need. As an optional alternative for Claude, this repository is also a plugin marketplace: the plugin adds the same connector together with a short skill that helps Claude start eModely tasks. Plugins on claude.ai and in the desktop app require a paid Claude plan.
 
-- **claude.ai and the desktop app.** Open **Customize > Plugins**, select **Add**, then **Add marketplace** and **Add from a repository**. Enter `Ahlabeeb/emodely-mcp`, keep **Sync automatically** on, and select **Sync**. Select **Add** next to **eModely Engine**, then connect it from the plugin's **Connectors** tab and sign in. Alternatively, download the plugin zip from the [latest release](https://github.com/Ahlabeeb/emodely-mcp/releases/latest) and upload it under **Customize > Plugins > Add > Upload plugin** without unzipping it.
+- **claude.ai and the desktop app.** Open **Customize > Plugins**, select **Add**, then **Add marketplace** and **Add from a repository**. Enter `Ahlabeeb/emodely-mcp`, keep **Sync automatically** on, and select **Sync**. Select **Add** next to **eModely Engine**, then connect it from the plugin's **Connectors** tab and sign in.
 - **Claude Code.** Run the following, then run `/mcp`, select the eModely server and choose **Authenticate**:
 
   ```text
@@ -52,13 +59,11 @@ The plugin in this repository adds the same connector together with a short skil
   /plugin install emodely-engine@emodely
   ```
 
-  To add the connector without the plugin, run `claude mcp add --transport http emodely-engine https://engine.emodely.com/mcp` in a terminal, then authenticate with `/mcp`.
-
-Plugin updates arrive automatically with **Sync automatically** on claude.ai, or through **Update now** in the Claude Code `/plugin` menu. Engine updates never require a plugin update.
+If you already added the connector, the plugin uses it, so there is nothing to remove. Engine updates never require a plugin update.
 
 ### ChatGPT (web)
 
-ChatGPT supports custom MCP servers on ChatGPT web for workspace plans that allow them. A workspace admin or owner may need to add or approve the connector, and some plans limit custom connectors to read-only actions. See OpenAI's article [Connecting custom MCP servers in ChatGPT](https://help.openai.com/en/articles/12584461) for the current requirements.
+Availability and write access depend on the ChatGPT plan. See OpenAI's article [Connecting custom MCP servers in ChatGPT](https://help.openai.com/en/articles/12584461) for the current requirements.
 
 1. On chatgpt.com, open **Plugins**, select the plus button, then **Add custom MCP server**.
 2. Enter the name `eModely Engine` and, under **Connection**, the URL `https://engine.emodely.com/mcp`.
@@ -66,11 +71,7 @@ ChatGPT supports custom MCP servers on ChatGPT web for workspace plans that allo
 4. Sign in on engine.emodely.com when asked, and select **Allow**.
 5. In a new chat, type `@` and select **eModely Engine**.
 
-ChatGPT does not currently support adding custom MCP servers in its mobile apps.
-
-### Other MCP clients
-
-Any MCP client that supports remote HTTP servers with OAuth sign-in can use the same connector URL.
+ChatGPT does not currently allow custom connectors to be added in its mobile apps, and eModely does not support use from those apps at present.
 
 ## Sign-in and access
 

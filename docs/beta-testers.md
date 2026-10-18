@@ -6,7 +6,7 @@ Thank you for testing the eModely Engine. This guide adds the beta details to th
 
 - **Beta access.** eModely switches on your access for a fixed period and tells you the end date.
 - **Sign-in.** Use the account you registered with eModely.
-- **An AI assistant that supports custom MCP connectors.** See [Connect](../README.md#connect) in the README.
+- **A supported assistant.** Claude (web, desktop or mobile) or ChatGPT on the web. See [Connect](../README.md#connect) in the README.
 
 ## 2. Connect and sign in
 
