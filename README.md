@@ -18,7 +18,7 @@ Results come from the eModely Engine, not from an AI estimate. If the engine is 
 - **Chiller performance curves.** Fit a curve set from manufacturer data, check coefficients you already have, adjust ratings and compare chillers. Generic library chillers are available for plant selection.
 - **Scenario comparison.** Compare plant options side by side on energy, cost and lifecycle financials.
 - **Real weather.** Every run uses a real EPW weather file, from the eModely library or uploaded by you. The engine never generates weather.
-- **Your work, saved.** Plants, load profiles, curve sets and runs are stored in your account, so you can list them, return to them later, or delete them. Hourly results are delivered as a CSV or Excel download link.
+- **Your work, saved.** Plants, load profiles, curve sets and runs are stored in your account, so you can list them and return to them later. Plants, load profiles and curve sets you no longer need can be deleted; past runs stay readable. Hourly results are delivered as a CSV or Excel download link.
 
 ## Who it is for
 
@@ -100,14 +100,14 @@ Example requests:
 ## How eModely works with your assistant
 
 - **The connector carries its own guide.** Tool descriptions and working rules are served by engine.emodely.com and update with the engine, so every assistant follows the current guidance. The [AI guide](https://engine.emodely.com/ai) is a plain-text page you can share with any assistant to explain eModely before the connector is added.
-- **Real weather only.** Before the first run with a weather file, the assistant names the file it will use. A nearby city is used only with your agreement.
-- **Hourly data stays out of the chat.** Hourly results are delivered through a download link that only your account can open, and the link expires.
+- **Real weather only.** The assistant names the weather file it uses, normally before the first run, or in the results when you asked it to assume everything and the city match is clear. A nearby city is used only with your agreement.
+- **Hourly data stays out of the chat.** Hourly results are delivered through an expiring download link that opens only after you sign in with your eModely account.
 - **Your data is yours.** Your plants, runs, curve sets and uploads belong to you and can be shown to you in full. The eModely chiller library's curves are confidential.
 - **Problem reports.** If a result looks wrong, ask the assistant to report it. It sends a private report to the eModely team only after you approve its contents.
 
 ## Data and privacy
 
-eModely stores your account, the work you save, your uploads and the inputs and summaries of your runs. eModely does not sell your data and does not use your inputs to train AI models. Your conversations stay with your AI provider; eModely receives only the requests the assistant sends to the engine. Details are in the [Terms of Use](https://engine.emodely.com/terms), the [Privacy Policy](https://emodely.com/privacy) and the [security page](https://engine.emodely.com/security).
+eModely stores your account, the work you save, your uploads and the inputs and summaries of your runs. Your conversations stay with your AI provider; eModely receives only the requests the assistant sends to the engine. Details are in the [Terms of Use](https://engine.emodely.com/terms), the [Privacy Policy](https://emodely.com/privacy) and the [security page](https://engine.emodely.com/security).
 
 Results are engineering estimates. Check the inputs and results; you remain responsible for design and investment decisions. Reverse engineering the engine, including systematic series of runs to map its behaviour, is not permitted.
 
