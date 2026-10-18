@@ -12,7 +12,7 @@ Thank you for testing the eModely Engine. This guide adds the beta details to th
 
 Follow [Connect](../README.md#connect) for your assistant. When the browser window opens on engine.emodely.com, sign in and select **Allow**.
 
-**If you see "Access denied" after signing in,** your access is not switched on yet, or it has ended. Reply to your invitation email or write to support@emodely.com.
+**If you see "Access denied" after signing in,** your access is not switched on yet, or it has ended. Create an account at sign-in (30-day free trial from the first successful run); if a trial is not available, request access at [engine.emodely.com/request-access](https://engine.emodely.com/request-access) or write to support@emodely.com.
 
 ## 3. What to try
 
