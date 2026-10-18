@@ -1,6 +1,6 @@
-name: Beta feedback
-description: Report a bug, a confusing step or a suggestion for the eModely Engine in Claude.
-title: "[beta] "
+name: Feedback
+description: Report a bug, a confusing step or a suggestion for the eModely Engine.
+title: "[feedback] "
 body:
   - type: markdown
     attributes:
@@ -10,12 +10,14 @@ body:
   - type: dropdown
     id: app
     attributes:
-      label: App
+      label: Assistant and app
       options:
-        - claude.ai (web)
+        - Claude (web)
         - Claude desktop app
         - Claude mobile
         - Claude Code
+        - ChatGPT (web)
+        - Other
     validations:
       required: true
   - type: input
@@ -29,7 +31,7 @@ body:
     id: prompt
     attributes:
       label: Your prompt
-      description: What you asked Claude, with confidential details removed.
+      description: What you asked the assistant, with confidential details removed.
     validations:
       required: true
   - type: textarea
@@ -41,8 +43,8 @@ body:
   - type: input
     id: engine-weather
     attributes:
-      label: Engine version and weather file that Claude reported
-      placeholder: engine version 3, Dubai library file
+      label: Weather file the assistant reported
+      placeholder: Dubai, eModely library file
   - type: textarea
     id: errors
     attributes:

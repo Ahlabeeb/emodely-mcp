@@ -1,253 +1,122 @@
-# eModely Engine for Claude
+# eModely Engine
 
-Simulate chiller plants and district cooling plants by talking to Claude. You describe the plant in plain words. Claude asks a few short questions, picks a real weather file with you, and runs the plant for a full year on the eModely engine. Claude can also fit, check and compare chiller performance curves, and run a plant with them.
+**Cooling design and simulation for buildings and district cooling plants, from your AI assistant.**
 
-**The results come from the eModely engine, not from an AI estimate.** Claude collects the inputs and explains the results. The calculation runs on eModely's servers, with the same engine as the eModely web app.
+eModely connects your AI assistant to the eModely Engine through the Model Context Protocol (MCP). You describe a building or a plant in plain language. The assistant collects the inputs, runs the calculation on eModely's servers with real weather data, and explains the results.
 
-**Who it is for:** HVAC and district cooling engineers, energy consultants and plant operators who want annual plant energy without building a model by hand.
+Results come from the eModely Engine, not from an AI estimate. If the engine is not connected, the assistant does not produce numbers of its own.
 
-**What you get for each run:** annual and monthly energy, kW/TR, peak electrical demand, the split between chillers, pumps and cooling towers, staging hours, warnings, and a download link for the hourly results (CSV or Excel).
+**Connector URL:** `https://engine.emodely.com/mcp`
 
-**What you need:**
+[Website](https://emodely.com) · [AI guide](https://engine.emodely.com/ai) · [Security](https://engine.emodely.com/security) · [Terms of Use](https://engine.emodely.com/terms) · [Privacy](https://emodely.com/privacy) · [Service status](https://status.emodely.com)
 
-- **An eModely engine account with an active subscription.** During the beta, access is by invitation. See [How do I get access?](#how-do-i-get-access).
-- **A Claude plan.** Plugins on claude.ai and the desktop app need a paid plan (Pro, Max, Team or Enterprise). The connector on its own also works on the Free plan, which allows one custom connector. Claude Code works with any plan that runs Claude Code.
-- **A real EPW weather file for the project location.** Use one from the eModely library or upload your own. The engine never generates weather.
+## What you can do
 
-[Terms of Use](https://engine.emodely.com/terms) · [Privacy Policy](https://emodely.com/privacy) · [Beta tester guide](docs/beta-testers.md) · [Report a problem](#7-feedback-and-support)
+- **Building cooling loads.** A quick method (RTS) gives full-year hourly loads for a single building or a whole district in seconds, for concept design and masterplans. A detailed method (EnergyPlus heat balance) supports design validation and sensitivity studies. Occupancy, lighting and equipment schedules can be adjusted, including seasonal periods and your own hourly schedules for a full year.
+- **Chiller and district cooling plant design.** Size and simulate a full year of operation for chillers, chilled-water and condenser-water pumps, cooling towers and thermal storage. Results include annual and monthly energy, kW/TR on delivered cooling, peak demand and where the energy goes.
+- **Thermal energy storage.** Size chilled-water storage together with the chillers, for example to reduce installed chiller capacity or peak demand.
+- **Chiller performance curves.** Fit a curve set from manufacturer data, check coefficients you already have, adjust ratings and compare chillers. Generic library chillers are available for plant selection.
+- **Scenario comparison.** Compare plant options side by side on energy, cost and lifecycle financials.
+- **Real weather.** Every run uses a real EPW weather file, from the eModely library or uploaded by you. The engine never generates weather.
+- **Your work, saved.** Plants, load profiles, curve sets and runs are stored in your account, so you can list them and return to them later. Plants, load profiles and curve sets you no longer need can be deleted; past runs stay readable. Hourly results are delivered as a CSV or Excel download link.
 
-This repository contains only the plugin: connection settings and instructions for Claude. It contains no engine code, chiller data or coefficients.
+## Who it is for
 
-## 1. Install
+- **HVAC designers and consultants** who need building loads, plant sizing and annual energy early in a project.
+- **Energy modellers** who want fast, repeatable annual simulations and scenario comparisons.
+- **Plant operators and owners** who want to see where an existing plant's energy goes and test operating changes such as set points, staging and tariffs.
+- **Developers** evaluating plant options, storage and lifecycle cost for a masterplan.
 
-Pick the app you use. A plugin you add on claude.ai is tied to your Claude account. It also appears in the desktop app, on mobile and in Claude Code.
+## Connect
 
-### Let Claude guide you
+You add the connector URL once and sign in with your eModely account. There is nothing to download or install.
 
-Paste this into Claude:
+**Assistants and apps:**
 
-```text
-Help me install the eModely Engine plugin from https://github.com/Ahlabeeb/emodely-claude-plugin and tell me the steps for the app I am using, one at a time. I will run the commands and sign in myself.
-```
+- **Claude:** claude.ai, the desktop app and the mobile apps. Add the connector on claude.ai or in the desktop app; it then appears in the mobile apps.
+- **ChatGPT:** add the connector on chatgpt.com (web). Availability and write access depend on the ChatGPT plan. eModely has not yet completed end-to-end testing with ChatGPT. ChatGPT does not currently allow custom connectors to be added in its mobile apps, and eModely does not support use from those apps at present.
 
-Claude explains the steps, but you run the commands and sign in yourself. Claude cannot sign in for you.
+### Claude (web and desktop app)
 
-### Claude Code
+1. Open **Customize > Connectors**, select **Add**, then **Add custom connector**.
+2. Enter the name `eModely Engine` and the URL `https://engine.emodely.com/mcp`, then select **Add**.
+3. Sign in on engine.emodely.com when the window opens, and select **Allow**.
+4. In a new chat, open **+ > Connectors** and check that **eModely Engine** is switched on.
 
-1. In Claude Code, run:
+Custom connectors are available on all Claude plans; the Free plan allows one. On Team and Enterprise plans, an Owner first adds the connector under **Organization settings > Connectors**, and each member then connects with their own eModely account.
 
-   ```text
-   /plugin marketplace add Ahlabeeb/emodely-claude-plugin
-   ```
+**Claude Code:** run `claude mcp add --transport http emodely-engine https://engine.emodely.com/mcp` in a terminal, then run `/mcp`, select `emodely-engine` and choose **Authenticate**.
 
-2. Then run:
+### Claude plugin (optional)
 
-   ```text
-   /plugin install emodely-engine@emodely
-   ```
+The connector is all you need. As an optional alternative for Claude, this repository is also a plugin marketplace: the plugin adds the same connector together with a short skill that helps Claude start eModely tasks. Plugins on claude.ai and in the desktop app require a paid Claude plan.
 
-   In the panel that opens, choose **Install for you (user scope)**.
-3. Run `/reload-plugins`, or restart Claude Code.
-4. Run `/mcp`, select `plugin:emodely-engine:emodely-engine`, press Enter, and choose **Authenticate**.
-5. A browser window opens on engine.emodely.com. Sign in and click **Allow**.
+- **claude.ai and the desktop app.** Open **Customize > Plugins**, select **Add**, then **Add marketplace** and **Add from a repository**. Enter `Ahlabeeb/emodely-mcp`, keep **Sync automatically** on, and select **Sync**. Select **Add** next to **eModely Engine**, then connect it from the plugin's **Connectors** tab and sign in.
+- **Claude Code.** Run the following, then run `/mcp`, select the eModely server and choose **Authenticate**:
 
-The repository is public, so no GitHub account or git sign-in is needed.
+  ```text
+  /plugin marketplace add Ahlabeeb/emodely-mcp
+  /plugin install emodely-engine@emodely
+  ```
 
-From a terminal instead of a session, run:
+If you already added the connector, the plugin uses it, so there is nothing to remove. Engine updates never require a plugin update.
 
-```bash
-claude plugin marketplace add Ahlabeeb/emodely-claude-plugin
-claude plugin install emodely-engine@emodely --scope user
-```
+### ChatGPT (web)
 
-Then start Claude Code and sign in with `/mcp` as in step 4.
+Availability and write access depend on the ChatGPT plan, and eModely has not yet completed end-to-end testing with ChatGPT. See OpenAI's article [Connecting custom MCP servers in ChatGPT](https://help.openai.com/en/articles/12584461) for the current requirements.
 
-If you already added the plugin on claude.ai, you may not need to install it. Claude Code 2.1.273 or later, signed in with the same claude.ai account, shows it as `emodely-engine@synced`. Run `/mcp` once to sign in.
+1. On chatgpt.com, open **Plugins**, select the plus button, then **Add custom MCP server**.
+2. Enter the name `eModely Engine` and, under **Connection**, the URL `https://engine.emodely.com/mcp`.
+3. Choose OAuth authentication, review the risk warning and confirm, then select **Create as a plugin**.
+4. Sign in on engine.emodely.com when asked, and select **Allow**.
+5. In a new chat, type `@` and select **eModely Engine**.
 
-### claude.ai and the Claude desktop app: plugin (recommended)
+ChatGPT does not currently allow custom connectors to be added in its mobile apps, and eModely does not support use from those apps at present.
 
-The plugin adds the connector and a skill that guides Claude. It needs a paid plan.
+## Sign-in and access
 
-1. Open **Customize > Plugins**, then **Add**.
-2. Add the plugin in one of two ways:
-   - **Add marketplace.** Choose **Add marketplace**, then **Add from a repository**. Enter `Ahlabeeb/emodely-claude-plugin` (or paste its GitHub URL), select it, leave **Sync automatically** on and click **Sync**. Then click **Add** next to **eModely Engine**.
-   - **Upload plugin.** Download `emodely-engine-<version>.zip` from the [latest release](https://github.com/Ahlabeeb/emodely-claude-plugin/releases/latest) and upload it. Do not unzip it.
-3. Open the **eModely Engine** plugin and go to its **Connectors** tab. `emodely-engine` may show **Not added**; that is expected. On a Team or Enterprise plan, an Owner may have to add it for the organization (see below).
-4. Click **Connect** next to `emodely-engine` (or **Add**, then **Connect**, if both are shown). If a connector dialog opens with the name and URL filled in, click **Continue**, keep **Sign in now** and **Register automatically**, and click **Add**. Sign in on engine.emodely.com and click **Allow**. If no sign-in window opens, click **Connect** again. If it shows **Connected** straight away, you signed in before.
-5. In a new chat, click **+ > Connectors** and check that **emodely-engine** is switched on.
+- Sign-in always takes place on engine.emodely.com. Your assistant never sees your password.
+- During the beta, access is by invitation. Request access at [engine.emodely.com/request-access](https://engine.emodely.com/request-access).
+- If you sign in and see "Access denied", your account exists but its access is not active yet, or it has ended. Contact support@emodely.com.
 
-### claude.ai and the Claude desktop app: connector only
+## Getting started
 
-This works on every plan, including Free. Claude still follows the engine's own guidance.
+Start a new chat with the connector switched on and say hello, or ask what eModely can do. The assistant shows a short welcome and offers three ways to start:
 
-1. Open **Customize > Connectors**, click **Add**, then **Add custom connector**. On some accounts it is **Add**, then **Custom**, then **Web**.
-2. Enter the name `eModely Engine` and the URL `https://engine.emodely.com/mcp`, then click **Continue**. Select **Sign in now** under Authentication and **Register automatically** under OAuth client (usually already selected), add no request headers, and click **Add**. Older versions of the dialog show **Advanced settings** and an **Add** button straight away: leave the advanced settings empty, click **Add**, and choose the same two options if asked.
-3. If no sign-in window opens, click **Connect**. Sign in on engine.emodely.com and click **Allow**. If the connector shows as connected straight away, you signed in before and there is nothing more to do.
-4. In a new chat, click **+ > Connectors** and check that **eModely Engine** is switched on.
+- **Quick:** up to six questions, each with a recommended answer.
+- **Detailed:** step by step through each topic.
+- **Just assume:** you give only the city and the size; the assistant assumes the rest and lists every assumption.
 
-If you already added this custom connector, the plugin uses it, so there is nothing to remove.
+Example requests:
 
-**Team and Enterprise plans.** An Owner first adds the connector under **Organization settings > Connectors**: **Add**, then **Custom**, then **Web**, with the URL above. Each member then connects under **Customize > Connectors** with their own eModely account.
+> Estimate hourly cooling loads for a 40,000 m² office and retail development in Dubai, then size a water-cooled chiller plant for it.
 
-### API key (Claude Code only)
+> We operate a plant in Riyadh with four 400 TR air-cooled chillers, about 12 years old. Simulate a typical year and show where the energy goes.
 
-If eModely issued you a personal API key, you can use it instead of browser sign-in:
+> For a new 2,000 TR district cooling plant in Abu Dhabi, compare a plant with chilled-water storage against one without, on energy, peak demand and lifecycle cost.
 
-1. Set the key as the environment variable `EMODELY_API_KEY`.
-2. Add the server yourself. Keep the single quotes, so the config stores the `${EMODELY_API_KEY}` reference and not the key itself:
+> Fit a chiller curve set from this manufacturer performance table and run my plant with it.
 
-   ```bash
-   claude mcp add --scope user --transport http emodely-engine-key https://engine.emodely.com/mcp --header 'Authorization: Bearer ${EMODELY_API_KEY}'
-   ```
+## How eModely works with your assistant
 
-3. Run `/mcp` and check that `emodely-engine-key` is connected. Recent versions of Claude Code hide the plugin's own `emodely-engine` server while a server with the same address is configured, so the tools appear once. If `/mcp` still lists `emodely-engine`, disable it.
+- **The connector carries its own guide.** Tool descriptions and working rules are served by engine.emodely.com and update with the engine, so every assistant follows the current guidance. The [AI guide](https://engine.emodely.com/ai) is a plain-text page you can share with any assistant to explain eModely before the connector is added.
+- **Real weather only.** The assistant names the weather file it uses, normally before the first run, or in the results when you asked it to assume everything and the city match is clear. A nearby city is used only with your agreement.
+- **Hourly data stays out of the chat.** Hourly results are delivered through an expiring download link that opens only after you sign in with your eModely account.
+- **Your data is yours.** Your plants, runs, curve sets and uploads belong to you and can be shown to you in full. The eModely chiller library's curves are confidential.
+- **Problem reports.** If a result looks wrong, ask the assistant to report it. It sends a private report to the eModely team only after you approve its contents.
 
-The plugin cannot carry the key itself, because a key header would turn off browser sign-in for everyone else.
+## Data and privacy
 
-## 2. First run
+eModely stores your account, the work you save, your uploads and the inputs and summaries of your runs. Your conversations stay with your AI provider; eModely receives only the requests the assistant sends to the engine. Details are in the [Terms of Use](https://engine.emodely.com/terms), the [Privacy Policy](https://emodely.com/privacy) and the [security page](https://engine.emodely.com/security).
 
-Start a new chat and try one of these prompts:
+Results are engineering estimates. Check the inputs and results; you remain responsible for design and investment decisions. Reverse engineering the engine, including systematic series of runs to map its behaviour, is not permitted.
 
-1. **New water-cooled plant**
+## Support
 
-   > We are designing a new 3,000 TR water-cooled chiller plant for a mixed-use development in Dubai. Run it for a typical year and give me annual energy, kW/TR and peak demand.
+- **Email:** support@emodely.com, for questions, access and anything confidential.
+- **Feedback:** open an [issue](https://github.com/Ahlabeeb/emodely-mcp/issues/new/choose). Issues are public, so leave out client names, project details and download links.
+- **Security:** see [SECURITY.md](SECURITY.md). Do not open a public issue.
 
-2. **Existing air-cooled plant**
+## About this repository
 
-   > We have an existing plant in Riyadh with four 400 TR air-cooled screw chillers, about 12 years old, with constant-speed primary pumps. Simulate a typical year and tell me where the energy goes.
-
-3. **Compare two options**
-
-   > For a new 2,000 TR plant in Abu Dhabi, compare water-cooled centrifugal chillers with air-cooled chillers. Show annual energy, kW/TR and peak demand side by side.
-
-**What Claude asks first.** Unless your prompt already gives the details, Claude offers three ways to start:
-
-- **Quick.** Up to six questions, each with a recommended answer.
-- **Detailed.** One topic per message: load, chillers, temperatures, pumps, towers and operation.
-- **Just assume.** You give only the city and the plant size, and Claude assumes the rest.
-
-Questions are numbered, with lettered choices and the recommended choice marked. Reply with your picks, for example "1b, 2 assume". Anything you skip takes the recommended answer. With the questions (or in the results, if you chose Just assume), Claude names the weather file: city, station, source and period, for example "Dubai Intl AP, eModely library, SRC-TMYx, 2009-2023". A reply that does not object accepts the answers and the file. Every assumption is listed in the results. You can change inputs later in the chat, and Claude re-runs.
-
-**What the results look like.** This is a shortened example from a real run: 1,000 TR water-cooled plant in Dubai, two chillers, constant-speed pumps.
-
-> **3.92 GWh a year at 0.699 kW/TR.** Engine version 3. Weather: Dubai Intl AP, eModely library, SRC-TMYx, 2009-2023.
->
-> | Item | kWh/yr | Share | kW/TR |
-> |---|---|---|---|
-> | Chillers | 2,621,458 | 66.9% | 0.467 |
-> | Primary chilled-water pumps | 577,718 | 14.7% | 0.103 |
-> | Condenser pumps | 468,420 | 12.0% | 0.083 |
-> | Cooling-tower fans | 251,474 | 6.4% | 0.045 |
-> | **Total** | **3,919,071** | 100% | **0.699** |
->
-> - Peak electrical demand: 826 kW, in June. Peak cooling load: 950 TR.
-> - Seasonal swing: 0.577 kW/TR in January, 0.788 kW/TR in August.
-> - Warning: in 4 hours of the year the plant missed the load by up to 23 TR.
-> - Settings left at engine defaults: tariff, emissions factor, pump and fan efficiency, condenser-water set-point.
-> - Hourly data: a CSV download link that only your account can open, valid for 24 hours.
-
-## 3. Weather files
-
-Every run uses a real EPW weather file. The engine never generates weather.
-
-- **The eModely library** covers Gulf and MENA cities. Name your project city and Claude finds the file.
-- **Your own file.** Ask Claude to upload a weather file. Claude gives you a link that is valid for 30 minutes. Open it, sign in with the same account, and upload the `.epw`. Your file is private to your account. For the same city, it is used before the library file. The file never passes through the chat.
-
-Before the first run with a weather file, Claude tells you which file it will use (city, station, source and period). A reply that does not object accepts it. If you ask Claude to assume everything and the city match is clear, Claude runs straight away and names the file in the results. If several cities share the name, Claude asks before running, and if the match is unclear, you choose. If there is no file for your city, Claude does not run. It offers the upload link and may suggest a nearby library city. It uses that city only if you agree.
-
-## 4. What to expect
-
-- **Permission prompts.** Claude's apps may ask permission before each engine tool call and show the raw tool input. Check your inputs in the chat, not in that box. Choosing **Always allow** for the eModely tools stops the prompts. Your inputs and the weather file are still discussed in the chat.
-- **What Claude reports.** Claude states the engine version, the weather file used, every default it assumed and every warning.
-- **Hourly results.** Hourly results never enter the chat. You get a download link that only your account can open. It expires within 24 hours. Ask Claude for a fresh CSV or Excel link at any time.
-- **Rows in the hourly file.** The file has one row per simulated hour, up to 8,760. Hours outside the plant's operating window, or below its minimum load, are left out. Use the `Hour`, `Month` and `HourOfDay` columns to place each row in the year.
-- **Chiller curves.** Claude can fit a curve set from your chiller performance data (up to 200 rows), check coefficients you paste, and save, list, show and delete your sets. Your own curve sets are yours, and Claude shows them in full. A saved set can run in a plant. Claude can also show, adjust and compare individually selected chillers from the eModely library, for use in your own projects. Extracting or compiling the library is not allowed (Terms of Use, clause 6).
-- **Outside the manufacturer data.** This applies to chillers that run from a curve set (one of yours, or a library chiller run as a curve set); chillers chosen by library model or archetype keep the engine's standard behaviour. Condenser temperatures beyond the data are extended by a lift-based method, down to a minimum-lift floor. When a chiller's minimum part load is set below its lowest measured part load, and it has no hot-gas bypass in that range, power between the two follows a straight-line extension. Below the minimum part load the chiller cycles on and off. The results count these hours and add a note; a run is not refused because of them.
-- **Confidential internals.** Engine internals stay confidential. Claude will not try to reveal them.
-- **Fair-use limits.** Currently 30 export links per hour, 30 curve fits or checks per hour, 50 new curve sets (including drafts) per day and 100 saved curve sets. Simulation runs are not capped.
-
-## 5. FAQ
-
-### Where do the results come from?
-
-From the eModely chiller plant engine, running on eModely's servers. It is the same engine as the eModely web app. Claude only collects the inputs and explains the outputs. If the engine is not connected, Claude says so and does not estimate results itself.
-
-### What data does eModely store?
-
-eModely stores:
-
-- your account email and sign-in records;
-- your subscription;
-- the plants you save;
-- your chiller curve sets and the performance data you fit them from;
-- a record of each library chiller you view;
-- the inputs and annual summaries of your runs;
-- weather files you upload;
-- export files;
-- usage logs.
-
-Export links expire within 24 hours, and the files are deleted shortly afterwards. Usage logs are kept for about 180 days. The database is hosted in the European Union (Frankfurt); section 8 of the Terms of Use describes where data is processed and how backups are kept. eModely does not sell your data and does not use your inputs to train AI models.
-
-Your conversations with Claude stay with Anthropic. eModely receives only the requests that Claude sends to the engine. The details are in section 8 of the [Terms of Use](https://engine.emodely.com/terms) and in the [Privacy Policy](https://emodely.com/privacy).
-
-### How do I get access?
-
-During the beta, eModely gives access by invitation. Email support@emodely.com and tell us a little about your work. If you sign in and see "Access denied", your account exists but has no active subscription yet.
-
-### Is the engine code in this repository?
-
-No. This repository holds only the plugin settings and the instructions Claude follows. The engine and the chiller database stay on eModely's servers. The curve tools return coefficients only for your own curve sets and for library chillers you select.
-
-### Can Claude see my hourly data?
-
-No. Claude sees the annual and monthly summaries, plus an average profile by month and hour of day. The hourly values go only to the download link.
-
-## 6. Troubleshooting
-
-| You see | What to do |
-|---|---|
-| The connector asks you to sign in again, or sign-in fails | Your session expired or the email or password is wrong. Reconnect and sign in again. |
-| You signed in but see "Access denied" | Your account has no active engine subscription. Email support@emodely.com. |
-| An upload link says it has expired or is invalid | Upload links last 30 minutes. Ask Claude for a new one. |
-| `emodely-engine-key` shows "Failed to connect" in `/mcp` | `EMODELY_API_KEY` is not set in the environment Claude Code started from, or the key was revoked. |
-| Claude says it has no eModely tools | Connect the connector (section 1). Make sure it is switched on in the chat. |
-| "Needs authentication" in Claude Code | Run `/mcp` and authenticate `emodely-engine` again. |
-| "The engine is busy" or a limit message | Wait a few minutes and try again. |
-
-## 7. Feedback and support
-
-- **Bugs and suggestions.** Open an [issue](https://github.com/Ahlabeeb/emodely-claude-plugin/issues/new/choose) with the **Beta feedback** form. Issues are public, so leave out client names, project details, export links and chat share links.
-- **Anything confidential, or no GitHub account.** Email support@emodely.com.
-- **Security issues.** See [SECURITY.md](SECURITY.md). Do not open a public issue.
-
-## 8. Terms of use and privacy
-
-Use of the engine is subject to the [eModely Engine Terms of Use](https://engine.emodely.com/terms) and the [eModely Privacy Policy](https://emodely.com/privacy).
-
-Results are engineering estimates. Check the inputs and results. You remain responsible for design and investment decisions.
-
-Reverse engineering the engine is not allowed. This includes running systematic series of simulations to map its behaviour.
-
-The plugin files in this repository are licensed under the terms in [LICENSE](LICENSE).
-
-## 9. Updates
-
-Engine updates need no plugin release. These parts are served by engine.emodely.com and update with every engine deploy, for plugin and connector users alike:
-
-- the engine;
-- its tool descriptions;
-- Claude's working rules (which questions to ask, the order of work, how to report).
-
-The plugin changes only when tools are added or renamed, or when another eModely engine is added. When that happens:
-
-- **claude.ai and the desktop app.** Marketplace users with **Sync automatically** on get updates without doing anything. Zip users download the new release, remove the old plugin and upload the new one.
-- **Claude Code.** Run `/plugin`, open **eModely Engine** on the **Installed** tab, and choose **Update now**.
-
-## For maintainers
-
-- **Allowed contents.** Config, skill text and docs only. `scripts/check-no-leaks.sh` also runs in CI. It fails on any other file, on engine identifiers, on internal hosts, and on anything that looks like a key or a coefficient table.
-- **Releases.**
-  1. Raise `version` in `plugins/emodely-engine/.claude-plugin/plugin.json`. Claude Code users stay on the installed version until it changes.
-  2. Run `bash scripts/package-plugin.sh`. It builds `dist/emodely-engine-<version>.zip` from the committed plugin folder.
-  3. Attach the zip to a GitHub release tagged `v<version>`.
-- **Validation.** Run `claude plugin validate .` and `claude plugin validate ./plugins/emodely-engine --strict`.
+This repository holds the public connector details, the optional Claude plugin (connector settings and skill text) and user documentation. It contains no engine code, chiller data or coefficients. The plugin files are provided under the terms in [LICENSE](LICENSE).
