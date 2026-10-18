@@ -6,7 +6,7 @@ Email **support@emodely.com** with "Security" in the subject line. Do not open a
 
 Please include:
 
-- what you found and where (this plugin, or the engine service at engine.emodely.com);
+- what you found and where (this repository, or the engine service at engine.emodely.com);
 - the steps to reproduce it;
 - the impact you expect.
 
@@ -15,9 +15,9 @@ We will confirm that we received your report and keep you informed while we fix 
 ## Scope
 
 - **In scope.**
-  - The plugin files in this repository.
+  - The connector settings, plugin files and documentation in this repository.
   - The eModely Engine service at engine.emodely.com, including sign-in, access control, uploads and download links.
-- **Out of scope.** Claude and its apps. Report those to Anthropic.
+- **Out of scope.** AI assistants and their apps, such as Claude or ChatGPT. Report those to their providers.
 
 ## Security testing
 
