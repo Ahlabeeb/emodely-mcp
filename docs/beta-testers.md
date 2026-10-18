@@ -4,15 +4,15 @@ Thank you for testing the eModely Engine. This guide adds the beta details to th
 
 ## 1. Before you start
 
-- **Beta access.** eModely switches on your access for a fixed period and tells you the end date.
-- **Sign-in.** Use the account you registered with eModely.
-- **An assistant.** Claude (web, desktop or mobile), or ChatGPT on the web, where end-to-end testing is not yet complete. See [Connect](../README.md#connect) in the README.
+- **Access.** New accounts receive a free trial, which starts with the first successful run; the sign-in page shows its length. If a trial is not available for your account, request access at [engine.emodely.com/request-access](https://engine.emodely.com/request-access).
+- **Sign-in.** Create an account when you first connect, with email and password or with Google, Microsoft or LinkedIn.
+- **An assistant.** Claude (web, desktop or mobile), or ChatGPT (added on chatgpt.com; then web, desktop and mobile, depending on the plan). See [Connect](../README.md#connect) in the README.
 
 ## 2. Connect and sign in
 
 Follow [Connect](../README.md#connect) for your assistant. When the browser window opens on engine.emodely.com, sign in and select **Allow**.
 
-**If you see "Access denied" after signing in,** your access is not switched on yet, or it has ended. Reply to your invitation email or write to support@emodely.com.
+**If you see "Access denied" after signing in,** your account has no active access yet, or its access has ended. Request access at [engine.emodely.com/request-access](https://engine.emodely.com/request-access) or write to support@emodely.com.
 
 ## 3. What to try
 

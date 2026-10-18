@@ -34,9 +34,7 @@ You add the connector URL once and sign in with your eModely account. There is n
 **Assistants and apps:**
 
 - **Claude:** claude.ai, the desktop app and the mobile apps. Add the connector on claude.ai or in the desktop app; it then appears in the mobile apps.
-- **ChatGPT desktop app:** add `https://engine.emodely.com/mcp` as an MCP server under **Plugins > MCPs**. It is then available on that computer only.
-- **ChatGPT on the web:** add the connector on chatgpt.com. Availability and write access depend on the ChatGPT plan. eModely has not yet completed end-to-end testing with ChatGPT on the web.
-- **ChatGPT mobile apps:** ChatGPT does not currently allow custom connectors to be added in its mobile apps, and eModely does not support use from those apps at present.
+- **ChatGPT:** add the connector once on chatgpt.com (web) as a custom MCP server. It is then available in ChatGPT on the web, desktop and mobile apps. Availability depends on the ChatGPT plan.
 
 ### Claude (web and desktop app)
 
@@ -63,17 +61,9 @@ The connector is all you need. As an optional alternative for Claude, this repos
 
 If you already added the connector, the plugin uses it, so there is nothing to remove. Engine updates never require a plugin update.
 
-### ChatGPT desktop app
+### ChatGPT
 
-1. In the ChatGPT desktop app, open **Plugins > MCPs** and add a server.
-2. Enter the name `eModely Engine` and the URL `https://engine.emodely.com/mcp`.
-3. Select **Authenticate**, sign in on engine.emodely.com when the browser opens, and select **Allow**.
-
-The server is stored on that computer only and does not appear in ChatGPT on other devices.
-
-### ChatGPT (web)
-
-Availability and write access depend on the ChatGPT plan, and eModely has not yet completed end-to-end testing with ChatGPT on the web. See OpenAI's article [Connecting custom MCP servers in ChatGPT](https://help.openai.com/en/articles/12584461) for the current requirements.
+Add the connector once on chatgpt.com. It is then available in ChatGPT on the web, desktop and mobile apps. Availability and write access depend on the ChatGPT plan. See OpenAI's article [Connecting custom MCP servers in ChatGPT](https://help.openai.com/en/articles/12584461) for the current requirements.
 
 1. On chatgpt.com, open **Plugins**, select the plus button, then **Add custom MCP server**.
 2. Enter the name `eModely Engine` and, under **Connection**, the URL `https://engine.emodely.com/mcp`.
@@ -81,12 +71,12 @@ Availability and write access depend on the ChatGPT plan, and eModely has not ye
 4. Sign in on engine.emodely.com when asked, and select **Allow**.
 5. In a new chat, type `@` and select **eModely Engine**.
 
-ChatGPT does not currently allow custom connectors to be added in its mobile apps, and eModely does not support use from those apps at present.
+The ChatGPT desktop app's Codex **Plugins > MCPs** list is a separate setup on each computer.
 
 ## Sign-in and access
 
 - Sign-in always takes place on engine.emodely.com. Your assistant never sees your password.
-- During the beta, access is by invitation. Request access at [engine.emodely.com/request-access](https://engine.emodely.com/request-access).
+- Access: create an account when you first connect, with email and password or with Google, Microsoft or LinkedIn. New accounts receive a free trial, which starts with the first successful run; the sign-in page shows its length. If a trial is not available for your account, request access at [engine.emodely.com/request-access](https://engine.emodely.com/request-access).
 - If you sign in and see "Access denied", your account exists but its access is not active yet, or it has ended. Contact support@emodely.com.
 
 ## Getting started

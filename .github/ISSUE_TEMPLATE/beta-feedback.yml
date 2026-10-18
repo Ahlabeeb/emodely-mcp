@@ -17,6 +17,8 @@ body:
         - Claude mobile
         - Claude Code
         - ChatGPT (web)
+        - ChatGPT desktop app
+        - ChatGPT mobile
         - Other
     validations:
       required: true
