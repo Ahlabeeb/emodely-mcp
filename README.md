@@ -76,7 +76,7 @@ The ChatGPT desktop app's Codex **Plugins > MCPs** list is a separate setup on e
 ## Sign-in and access
 
 - Sign-in always takes place on engine.emodely.com. Your assistant never sees your password.
-- Access: create an account when you first connect, with email and password or with Google, Microsoft or LinkedIn. New accounts receive a 30-day free trial, which starts with the first successful run. If a trial is not available for your account, request access at [engine.emodely.com/request-access](https://engine.emodely.com/request-access).
+- Access: create an account when you first connect, with email and password or with Google, Microsoft or LinkedIn. New accounts receive a free trial, which starts with the first successful run; the sign-in page shows its length. If a trial is not available for your account, request access at [engine.emodely.com/request-access](https://engine.emodely.com/request-access).
 - If you sign in and see "Access denied", your account exists but its access is not active yet, or it has ended. Contact support@emodely.com.
 
 ## Getting started

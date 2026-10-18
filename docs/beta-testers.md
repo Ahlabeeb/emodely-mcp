@@ -4,7 +4,7 @@ Thank you for testing the eModely Engine. This guide adds the beta details to th
 
 ## 1. Before you start
 
-- **Access.** New accounts receive a 30-day free trial, which starts with the first successful run. If a trial is not available for your account, request access at [engine.emodely.com/request-access](https://engine.emodely.com/request-access).
+- **Access.** New accounts receive a free trial, which starts with the first successful run; the sign-in page shows its length. If a trial is not available for your account, request access at [engine.emodely.com/request-access](https://engine.emodely.com/request-access).
 - **Sign-in.** Create an account when you first connect, with email and password or with Google, Microsoft or LinkedIn.
 - **An assistant.** Claude (web, desktop or mobile), or ChatGPT (added on chatgpt.com; then web, desktop and mobile, depending on the plan). See [Connect](../README.md#connect) in the README.
 
