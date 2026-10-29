@@ -20,7 +20,7 @@ Follow [Connect](../README.md#connect) for your assistant. When the browser wind
 
 ## 3. What to try
 
-1. Say hello and choose a way to start: Quick, Detailed or Just assume. In Quick and Detailed, answer whether the plant is new or existing and whether it is air-cooled or water-cooled.
+1. Say hello and choose a way to start: Quick, Detailed or Just assume. Answer whether the plant is new or existing, and in Quick and Detailed whether it is air-cooled or water-cooled.
 2. Estimate cooling loads for a building or a small district, with the quick method and then the detailed method.
 3. Size and simulate a plant for one of your own projects. Leave out client names.
 4. Ask for chilled-water storage options for the same plant. The storage advisor runs in the background. The assistant starts it and checks back for the result, so it can take a little while.

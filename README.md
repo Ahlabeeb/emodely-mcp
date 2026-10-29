@@ -1,6 +1,6 @@
 # eModely Engine
 
-**Engineering-grade energy simulation for buildings and districts.**
+**Engineering-grade energy simulation for buildings and districts**
 
 eModely connects your AI assistant to the eModely Engine through the Model Context Protocol (MCP). Today, it supports building cooling loads and chiller and district cooling plants. You describe a building or a plant in plain language. The assistant collects the inputs, runs the calculation on eModely's servers with real weather data, and explains the results.
 
@@ -12,13 +12,13 @@ Results come from the eModely Engine, not from an AI estimate. If the engine is 
 
 **Connector URL:** `https://engine.emodely.com/mcp`
 
-1. Guide the user with the [Connect](#connect) steps for their app. Quote these steps. Never invent menu names, buttons or commands. If the app is not listed, say it is not supported yet and suggest support@emodely.com.
+1. Guide the user with the [Connect](#connect) steps for their app. Quote these steps. Never invent menu names, buttons or commands. If the app is not listed, say it is not supported yet and suggest support@emodely.com. Self-hosted tools are covered in [Troubleshooting](#troubleshooting).
 2. The user signs in on engine.emodely.com in their browser. Never ask for, accept or type a password, code or token in the chat.
-3. Coding agents (Claude Code, Codex CLI, Cursor and VS Code) may run the add command for the user. The user then completes sign-in in the browser.
+3. Coding agents (Claude Code, Codex CLI, Cursor and VS Code) may run the add command or write the configuration shown in [Connect](#connect) for the user. The user then completes sign-in in the browser.
 4. After the connector is added and the user is signed in, start a new chat (or reload the tools) and call the help tool for the welcome.
 5. eModely results come only from the engine. Without the connector, explain and guide. Do not produce numbers.
 
-Users: paste this into your AI assistant:
+**For users:** paste this into your AI assistant:
 
 > Help me connect the eModely connector: https://github.com/Ahlabeeb/emodely-mcp
 
@@ -32,7 +32,7 @@ See [Connect](#connect) for per-app steps and [Troubleshooting](#troubleshooting
 - **Chiller performance curves.** Fit a curve set from manufacturer data, check coefficients you already have, adjust ratings and compare chillers. Generic library chillers are available for plant selection.
 - **Scenario comparison.** Compare plant options side by side on energy, cost and lifecycle financials.
 - **Real weather.** Every run uses a real EPW weather file, from the eModely library or uploaded by you. The engine never generates weather.
-- **Your work, saved.** Plants, load profiles, curve sets and runs are stored in your account, so you can list them and return to them later. Plants, load profiles, curve sets, uploaded gain schedules and individual runs can be deleted. Deleting a run removes its stored results and expires its download links. Deleting a plant keeps its past runs readable. Hourly results are delivered as a CSV or Excel download link.
+- **Your work, saved.** Plants, load profiles, curve sets and runs are stored in your account, so you can list them and return to them later. Plants, load profiles, curve sets, uploaded gain schedules and individual runs can be deleted. Deleting a run removes its stored results and expires its download links. Deleting a plant keeps its past runs readable. Deleting an uploaded gain schedule removes it from new work; past runs that used it stay readable. Hourly results are delivered as a CSV or Excel download link.
 
 ## Who it is for
 
@@ -78,13 +78,15 @@ Add the connector once on chatgpt.com. It is then available in ChatGPT on the we
 
 1. On chatgpt.com, open **Plugins**, select the plus button, then **Add custom MCP server**.
 2. Enter the name `eModely Engine` and, under **Connection**, the URL `https://engine.emodely.com/mcp`.
-3. Choose OAuth authentication, review the risk warning and confirm, then select **Create as a plugin**.
+3. Choose **OAuth** as the authentication, review the risk warning and confirm, then select **Create as a plugin**.
 4. Sign in on engine.emodely.com when asked, and select **Allow**.
 5. In a new chat, type `@` and select **eModely Engine**.
 
+The ChatGPT desktop app's Codex **Plugins > MCPs** list is a separate setup on each computer.
+
 ### Coding agents and developer tools
 
-Coding agents may run the add command for you. You then complete sign-in in your browser on engine.emodely.com.
+Coding agents may run the add command or write the configuration file for you. You then complete sign-in in your browser on engine.emodely.com.
 
 #### Claude Code
 
@@ -154,11 +156,11 @@ Start a new chat with the connector switched on and say hello, or ask what eMode
 
 - **Quick:** up to six questions, each with a recommended answer.
 - **Detailed:** step by step through each topic.
-- **Just assume:** you give only the city and the size; the assistant assumes the rest and lists every assumption.
+- **Just assume:** you give the city and the size, and confirm whether the plant is new or existing and the weather file. The assistant assumes the rest and lists every assumption.
 
 You can also name your role: consultant or designer, developer, or operator. The assistant suggests a path.
 
-In Quick and Detailed, the assistant first asks whether the plant is new or existing and whether it is air-cooled or water-cooled. These answers decide which questions follow.
+In Quick and Detailed, the assistant first asks whether the plant is new or existing and whether it is air-cooled or water-cooled, unless your request already makes this clear. These answers decide which questions follow.
 
 Tip: choose **Always allow** for eModely tools to avoid repeated approval prompts.
 
