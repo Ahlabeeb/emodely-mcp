@@ -9,7 +9,7 @@
     {
       "name": "emodely-engine",
       "source": "./plugins/emodely-engine",
-      "description": "Cooling design and simulation with the eModely Engine: building loads, chiller and district cooling plants, thermal storage and chiller curves, with real weather data."
+      "description": "Engineering-grade energy simulation for buildings and districts with the eModely Engine: building loads, chiller and district cooling plants, thermal storage and chiller curves, with real weather data."
     }
   ]
 }
