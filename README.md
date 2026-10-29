@@ -84,6 +84,24 @@ Add the connector once on chatgpt.com. It is then available in ChatGPT on the we
 
 The ChatGPT desktop app's Codex **Plugins > MCPs** list is a separate setup on each computer.
 
+### Lovable
+
+1. In Lovable, open **Connectors**, select **Add custom**, then **MCP server**.
+2. Enter the server name **eModely Engine** and the server URL `https://engine.emodely.com/mcp`. If a **Connection** option appears, keep **Direct connection**.
+3. Keep the authentication as **OAuth (default)** and select **Add & authorize**.
+4. Sign in on engine.emodely.com and select **Allow**.
+
+The connection is personal to your Lovable account. A workspace admin can turn off custom MCP servers. If **MCP server** is greyed out, ask your admin.
+
+### Raycast
+
+1. Run the **Install MCP Server** command.
+2. Enter the name **eModely Engine**, choose the **HTTP** transport, enter the URL `https://engine.emodely.com/mcp` and choose the **Dynamic** OAuth type.
+3. Submit with **Install MCP Server**.
+4. When Raycast asks you to **Sign In**, sign in on engine.emodely.com and select **Allow**.
+
+MCP servers in Raycast require Raycast Pro.
+
 ### Coding agents and developer tools
 
 Coding agents may run the add command or write the configuration file for you. You then complete sign-in in your browser on engine.emodely.com.
@@ -127,6 +145,40 @@ Open the Command Palette and run **MCP: Add Server**. Choose **HTTP**, enter `ht
 
 Start the server. When VS Code asks to sign in, allow it and sign in on engine.emodely.com.
 
+#### Warp
+
+In the Warp desktop app, open **Settings > Agents > MCP servers**, select **+ Add**, choose **Streamable HTTP or SSE Server (URL)** and paste:
+
+```json
+{"mcpServers": {"emodely-engine": {"url": "https://engine.emodely.com/mcp"}}}
+```
+
+Start the server. Warp opens your browser. Sign in on engine.emodely.com and select **Allow**.
+
+For other Warp setups (for example the command line), add a remote MCP server with the URL `https://engine.emodely.com/mcp`, then sign in on engine.emodely.com when asked. If sign-in does not start, contact support@emodely.com.
+
+#### GitHub Copilot in JetBrains IDEs
+
+Click the Copilot icon in the lower right corner, select **Open Chat** and switch to **Agent** mode. Click the tools icon (**Configure your MCP server**), select **Add MCP Tools** and add this to `mcp.json`:
+
+```json
+{"servers": {"emodely-engine": {"type": "http", "url": "https://engine.emodely.com/mcp"}}}
+```
+
+Save the file. When Copilot asks to sign in, allow it and sign in on engine.emodely.com.
+
+#### GitHub Copilot for Xcode
+
+Open the GitHub Copilot for Xcode settings (in Xcode: **Editor > GitHub Copilot > Open GitHub Copilot for Xcode Settings**). Select the **MCP** tab, then **Edit Config**, and add:
+
+```json
+{"servers": {"emodely-engine": {"type": "http", "url": "https://engine.emodely.com/mcp"}}}
+```
+
+Save the file. When Copilot asks to sign in, allow it and sign in on engine.emodely.com.
+
+For Copilot Business or Enterprise, an administrator must allow MCP servers in Copilot first.
+
 #### MCP Inspector (developers)
 
 Run:
@@ -135,7 +187,7 @@ Run:
 npx @modelcontextprotocol/inspector
 ```
 
-Choose the **Streamable HTTP** transport, enter `https://engine.emodely.com/mcp` and select **Connect**, then sign in.
+Choose the **Streamable HTTP** transport, enter `https://engine.emodely.com/mcp` and connect, then sign in on engine.emodely.com. If your Inspector shows a **Connection Type** option, **Direct** and **Via Proxy** both work.
 
 ## Sign-in and access
 
@@ -149,6 +201,7 @@ Choose the **Streamable HTTP** transport, enter `https://engine.emodely.com/mcp`
 - **Desktop and terminal apps.** After **Allow**, the page asks you to return to your app: **Open your app**, or "Return to your AI app to finish". If the app was closed or stopped waiting, go back to the app and start sign-in again.
 - **Mobile apps.** The sign-in page may warn "Only continue if you started this connection from an app on this device". Continue only if you started it.
 - **Self-hosted tools (for example n8n or LibreChat).** eModely must add your tool's callback address first. Contact support@emodely.com.
+- **Browser-based tools.** Tools that connect directly from a web page, other than MCP Inspector, need eModely to allow their web address first. Contact support@emodely.com.
 
 ## Getting started
 
