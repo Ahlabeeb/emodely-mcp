@@ -6,25 +6,29 @@ Thank you for testing the eModely Engine. This guide adds the beta details to th
 
 - **Access.** New accounts receive a free trial, which starts with the first successful run; the sign-in page shows its length. If a trial is not available for your account, request access at [engine.emodely.com/request-access](https://engine.emodely.com/request-access).
 - **Sign-in.** Create an account when you first connect, with email and password or with Google, Microsoft or LinkedIn.
-- **An assistant.** Claude (web, desktop or mobile), or ChatGPT (added on chatgpt.com; then web, desktop and mobile, depending on the plan). See [Connect](../README.md#connect) in the README.
+- **An assistant.** Claude (web, desktop and mobile), Claude Code, ChatGPT (added on chatgpt.com; then web, desktop and mobile, depending on the plan), VS Code (GitHub Copilot chat), Cursor, Codex CLI or MCP Inspector. See [Connect](../README.md#connect) in the README.
 
 ## 2. Connect and sign in
 
+Paste this into your AI assistant and it will guide you:
+
+> Help me connect the eModely connector: https://github.com/Ahlabeeb/emodely-mcp
+
 Follow [Connect](../README.md#connect) for your assistant. When the browser window opens on engine.emodely.com, sign in and select **Allow**.
 
-**If you see "Access denied" after signing in,** your account has no active access yet, or its access has ended. Request access at [engine.emodely.com/request-access](https://engine.emodely.com/request-access) or write to support@emodely.com.
+**"Access denied" after sign-in:** your account has no active access yet, or its access has ended. Contact support@emodely.com. See [Troubleshooting](../README.md#troubleshooting) for this and other sign-in problems.
 
 ## 3. What to try
 
-1. Say hello and choose a way to start: Quick, Detailed or Just assume.
+1. Say hello and choose a way to start: Quick, Detailed or Just assume. Answer whether the plant is new or existing, and in Quick and Detailed whether it is air-cooled or water-cooled.
 2. Estimate cooling loads for a building or a small district, with the quick method and then the detailed method.
 3. Size and simulate a plant for one of your own projects. Leave out client names.
-4. Ask for chilled-water storage options for the same plant.
+4. Ask for chilled-water storage options for the same plant. The storage advisor runs in the background. The assistant starts it and checks back for the result, so it can take a little while.
 5. Change one input, re-run, and ask the assistant to compare the two runs.
 6. Ask for the hourly results as Excel, and open the download link.
 7. Try a city that is not in the library, and upload your own EPW file through the link the assistant gives you.
 8. Give the assistant a small chiller performance table, let it fit and save a curve set, and run a plant with it.
-9. List your saved plants and runs, and delete a plant you no longer need.
+9. List your saved plants and runs, and delete a run or a plant you no longer need.
 
 ## 4. What to report
 

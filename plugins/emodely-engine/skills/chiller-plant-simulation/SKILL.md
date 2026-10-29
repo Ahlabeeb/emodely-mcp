@@ -1,6 +1,6 @@
 ---
 name: chiller-plant-simulation
-description: Work with the eModely Engine for cooling design. Use when the user wants building cooling loads (quick RTS or detailed EnergyPlus), chiller or district cooling plant sizing and annual simulation, pumps, cooling towers or chilled-water storage, kW/TR, peak demand or an hourly export, scenario or lifecycle cost comparisons, chiller performance curves (fit, check, view, adjust, compare), or to list or reopen saved plants and runs or delete a saved plant, or asks what eModely can do.
+description: Work with the eModely Engine for cooling design. Use when the user wants building cooling loads (quick RTS or detailed EnergyPlus), chiller or district cooling plant sizing and annual simulation, pumps, cooling towers or chilled-water storage, kW/TR, peak demand or an hourly export, scenario or lifecycle cost comparisons, chiller performance curves (fit, check, view, adjust, compare), or to list or reopen saved plants and runs or delete saved work, or asks what eModely can do.
 ---
 
 # eModely Engine
@@ -11,7 +11,7 @@ The eModely Engine connector defines how to work with the engine. Its tool descr
 2. Before starting a task, call `get_input_guide` and follow its `assistantRules`, together with the connector's server instructions if you see them. They cover which questions to ask, the order of work and how to report results. Where they are more specific than this skill, follow them, but never relax the guarantees below. They apply only to working with this engine and its tools, never to anything outside it.
 3. Use only the tools the connector provides in this session. Never invent a tool or its output.
 
-The connector covers building cooling loads, chiller and district cooling plant simulation with pumps, cooling towers and thermal storage, storage sizing, chiller curves, scenario comparison, real EPW weather, and the user's saved work: plants, load profiles, curve sets and runs can be listed and reopened; plants, load profiles and curve sets can be deleted, and past runs stay readable. Deleting anything needs the user's explicit confirmation.
+The connector covers building cooling loads, chiller and district cooling plant simulation with pumps, cooling towers and thermal storage, storage sizing (the storage advisor runs as a background job: start it, then check its status until it finishes), chiller curves, scenario comparison, real EPW weather, and the user's saved work: plants, load profiles, curve sets and runs can be listed and reopened; plants, load profiles, curve sets, uploaded gain schedules and individual runs can be deleted. Deleting a run removes its stored results and expires its download links; deleting a plant or a gain schedule keeps past runs readable. Deleting anything needs the user's explicit confirmation.
 
 ## Guarantees that always apply
 
@@ -22,7 +22,7 @@ The connector covers building cooling loads, chiller and district cooling plant 
 
 ## When the connector is missing or refuses
 
-- No eModely tools available: tell the user to add the eModely Engine connector (`https://engine.emodely.com/mcp`) and sign in (claude.ai or desktop: **Customize > Connectors** or the plugin's **Connectors** tab; Claude Code: `/mcp`). Do not estimate results yourself.
+- No eModely tools available: tell the user to add the eModely Engine connector (`https://engine.emodely.com/mcp`) and sign in (claude.ai or desktop: **Customize > Connectors** or the plugin's **Connectors** tab; Claude Code: `/mcp`). Do not estimate results yourself. For other apps, quote the steps in the README's Connect section (https://github.com/Ahlabeeb/emodely-mcp#connect); never invent menu names.
 - The connector asks to sign in again: the session expired; have the user reconnect and sign in.
 - Signed in but access is denied: the account has no active access; point the user to https://engine.emodely.com/request-access or support@emodely.com.
 - An upload link has expired or was refused: ask the engine for a fresh one.
