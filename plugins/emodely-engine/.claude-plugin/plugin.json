@@ -2,7 +2,7 @@
   "name": "emodely-engine",
   "displayName": "eModely Engine",
   "version": "0.4.0",
-  "description": "Engineering-grade energy simulation for buildings and districts with the eModely Engine: building cooling loads, chiller and district cooling plant design and annual simulation, thermal storage, chiller curves and scenario comparison, with real weather data. Requires an eModely account with active access.",
+  "description": "Engineering-grade energy simulation for buildings and districts with the eModely Engine: building cooling loads, chiller and district cooling plant design and annual simulation, thermal storage, chiller curves and scenario comparison, with real weather data. Also supports pipe pressure drop and sizing. Requires an eModely account with active access.",
   "author": {
     "name": "eModely",
     "url": "https://emodely.com"
@@ -16,6 +16,8 @@
     "energy-modeling",
     "cooling-loads",
     "thermal-storage",
+    "pipe-pressure-drop",
+    "pipe-sizing",
     "mcp"
   ]
 }

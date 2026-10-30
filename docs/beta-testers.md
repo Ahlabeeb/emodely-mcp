@@ -29,6 +29,8 @@ Follow [Connect](../README.md#connect) for your assistant. When the browser wind
 7. Try a city that is not in the library, and upload your own EPW file through the link the assistant gives you.
 8. Give the assistant a small chiller performance table, let it fit and save a curve set, and run a plant with it.
 9. List your saved plants and runs, and delete a run or a plant you no longer need.
+10. Calculate pipe pressure drop for water or glycol along one serial index circuit. Enter the pipe lengths, flows, sizes and total fittings loss coefficients directly, then review segment losses, circuit totals, velocity and warnings.
+11. Size a pipe from a flow, or from a cooling load and temperature difference, with velocity and friction-gradient limits. Review the recommended size and candidate checks.
 
 ## 4. What to report
 
@@ -40,7 +42,7 @@ We want to hear about anything that is wrong, confusing or slow, for example:
 - the assistant estimating numbers itself instead of running the engine;
 - problems with connecting, sign-in, upload or download.
 
-For each report, include the assistant and app you used, the date and time with your time zone, your prompt, what happened and what you expected, the weather file the assistant reported, and any error message word for word.
+For each report, include the assistant and app you used, the date and time with your time zone, your prompt, what happened and what you expected, the weather file the assistant reported (for load and plant simulations), and any error message word for word.
 
 ## 5. How to report
 
