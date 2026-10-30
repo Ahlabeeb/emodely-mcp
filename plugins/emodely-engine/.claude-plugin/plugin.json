@@ -1,8 +1,8 @@
 {
   "name": "emodely-engine",
   "displayName": "eModely Engine",
-  "version": "0.4.0",
-  "description": "Engineering-grade energy simulation for buildings and districts with the eModely Engine: building cooling loads, chiller and district cooling plant design and annual simulation, thermal storage, chiller curves and scenario comparison, with real weather data. Requires an eModely account with active access.",
+  "version": "1.0.0",
+  "description": "Connects your assistant to the eModely Engine for building and district cooling design. All guidance comes from the connector. Requires an eModely account with active access.",
   "author": {
     "name": "eModely",
     "url": "https://emodely.com"

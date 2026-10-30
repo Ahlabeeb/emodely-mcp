@@ -29,6 +29,8 @@ Follow [Connect](../README.md#connect) for your assistant. When the browser wind
 7. Try a city that is not in the library, and upload your own EPW file through the link the assistant gives you.
 8. Give the assistant a small chiller performance table, let it fit and save a curve set, and run a plant with it.
 9. List your saved plants and runs, and delete a run or a plant you no longer need.
+10. Calculate pipe pressure drop for water or glycol along one serial index circuit. Enter the pipe lengths, flows, sizes and total fittings loss coefficients directly, then review segment losses, circuit totals, velocity and warnings.
+11. Size a pipe from a flow, or from a cooling load and temperature difference, with velocity and friction-gradient limits. Review the recommended size and candidate checks.
 
 ## 4. What to report
 

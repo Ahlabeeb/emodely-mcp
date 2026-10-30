@@ -2,7 +2,7 @@
 
 **Engineering-grade energy simulation for buildings and districts**
 
-eModely connects your AI assistant to the eModely Engine through the Model Context Protocol (MCP). Today, it supports building cooling loads and chiller and district cooling plants. You describe a building or a plant in plain language. The assistant collects the inputs, runs the calculation on eModely's servers with real weather data, and explains the results.
+eModely connects your AI assistant to the eModely Engine through the Model Context Protocol (MCP). Today, it supports building cooling loads, chiller and district cooling plants, and pipe pressure drop and sizing. You describe a building, plant or pipe circuit in plain language. The assistant collects the inputs, runs the calculation on eModely's servers and explains the results.
 
 Results come from the eModely Engine, not from an AI estimate. If the engine is not connected, the assistant does not produce numbers of its own.
 
@@ -31,12 +31,23 @@ See [Connect](#connect) for per-app steps and [Troubleshooting](#troubleshooting
 - **Thermal energy storage.** Size chilled-water storage together with the chillers, for example to reduce installed chiller capacity or peak demand. The storage advisor runs as a background job. The assistant starts it and checks back for the result. This can take a little while.
 - **Chiller performance curves.** Fit a curve set from manufacturer data, check coefficients you already have, adjust ratings and compare chillers. Generic library chillers are available for plant selection.
 - **Scenario comparison.** Compare plant options side by side on energy, cost and lifecycle financials.
-- **Real weather.** Every run uses a real EPW weather file, from the eModely library or uploaded by you. The engine never generates weather.
+- **Pipe pressure drop.** Calculate friction and fittings losses along one serial index circuit for water or glycol, with segment results, circuit totals, velocity and warnings.
+- **Pipe sizing.** Select the smallest pipe size meeting velocity and friction-gradient limits for a flow, or for a cooling load and temperature difference.
+- **EPW weather files.** Simulations use an EPW weather file, from the eModely library or uploaded by you. The engine never generates weather.
 - **Your work, saved.** Plants, load profiles, curve sets and runs are stored in your account, so you can list them and return to them later. Plants, load profiles, curve sets, uploaded gain schedules and individual runs can be deleted. Deleting a run removes its stored results and expires its download links. Deleting a plant keeps its past runs readable. Deleting an uploaded gain schedule removes it from new work; past runs that used it stay readable. Hourly results are delivered as a CSV or Excel download link.
+
+### Pipe calculation tools
+
+Pipe calculations use inputs entered directly. The input guide's `pressure_drop` topic covers both tools.
+
+| Tool | Purpose |
+| --- | --- |
+| `pressure_drop` | Calculate pressure drop along one serial index circuit, including fittings, elevation and a design margin. |
+| `size_pipe` | Select the smallest pipe size meeting velocity and friction-gradient limits for a flow, or for a cooling load and temperature difference. |
 
 ## Who it is for
 
-- **HVAC designers and consultants** who need building loads, plant sizing and annual energy early in a project.
+- **HVAC designers and consultants** who need building loads, plant sizing, pipe pressure drop and sizing, and annual energy early in a project.
 - **Energy modellers** who want fast, repeatable annual simulations and scenario comparisons.
 - **Plant operators and owners** who want to see where an existing plant's energy goes and test operating changes such as set points, staging and tariffs.
 - **Developers** evaluating plant options, storage and lifecycle cost for a masterplan.
@@ -71,6 +82,8 @@ The connector is all you need. As an optional alternative for Claude, this repos
   ```
 
 If you already added the connector, the plugin uses it, so there is nothing to remove. Engine updates never require a plugin update.
+
+The plugin version follows the eModely Engine version and changes only when the engine version changes, never when a feature is added.
 
 ### ChatGPT
 
@@ -227,10 +240,14 @@ Example requests:
 
 > Fit a chiller curve set from this manufacturer performance table and run my plant with it.
 
+> Calculate pressure drop for a closed chilled-water circuit at 7 °C and 30 m³/h, with 80 m of supply pipe and 80 m of return pipe, both with a 100 mm internal diameter. Use carbon steel and a total fittings loss coefficient of 6 on each leg. Show segment losses, circuit total, velocity and warnings.
+
+> Size a carbon steel chilled-water pipe for a 500 kW cooling load with a 6 K temperature difference, at a water temperature of 7 °C. Use maximum limits of 1.5 m/s and 200 Pa/m, and show the recommended size and candidate checks.
+
 ## How eModely works with your assistant
 
 - **The connector carries its own guide.** Tool descriptions and working rules are served by engine.emodely.com and update with the engine, so every assistant follows the current guidance. The [AI guide](https://engine.emodely.com/ai) is a plain-text page you can share with any assistant to explain eModely before the connector is added.
-- **Real weather only.** The assistant names the weather file it uses, normally before the first run, or in the results when you asked it to assume everything and the city match is clear. A nearby city is used only with your agreement.
+- **EPW weather files only.** The assistant names the weather file it uses, normally before the first run, or in the results when you asked it to assume everything and the city match is clear. A nearby city is used only with your agreement.
 - **Hourly data stays out of the chat.** Hourly results are delivered through an expiring download link that opens only after you sign in with your eModely account.
 - **Your data is yours.** Your plants, runs, curve sets and uploads belong to you and can be shown to you in full. The eModely chiller library's curves are confidential.
 - **Problem reports.** If a result looks wrong, ask the assistant to report it. It sends a private report to the eModely team only after you approve its contents.
