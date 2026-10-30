@@ -2,7 +2,7 @@
 
 **Engineering-grade energy simulation for buildings and districts**
 
-eModely connects your AI assistant to the eModely Engine through the Model Context Protocol (MCP). Today, it supports building cooling loads, chiller and district cooling plants, and pipe pressure drop and sizing. You describe a building, plant or pipe circuit in plain language. The assistant collects the inputs, runs the calculation on eModely's servers and explains the results. Load and plant simulations use real weather data.
+eModely connects your AI assistant to the eModely Engine through the Model Context Protocol (MCP). Today, it supports building cooling loads, chiller and district cooling plants, and pipe pressure drop and sizing. You describe a building, plant or pipe circuit in plain language. The assistant collects the inputs, runs the calculation on eModely's servers and explains the results.
 
 Results come from the eModely Engine, not from an AI estimate. If the engine is not connected, the assistant does not produce numbers of its own.
 
@@ -33,7 +33,7 @@ See [Connect](#connect) for per-app steps and [Troubleshooting](#troubleshooting
 - **Scenario comparison.** Compare plant options side by side on energy, cost and lifecycle financials.
 - **Pipe pressure drop.** Calculate friction and fittings losses along one serial index circuit for water or glycol, with segment results, circuit totals, velocity and warnings.
 - **Pipe sizing.** Select the smallest pipe size meeting velocity and friction-gradient limits for a flow, or for a cooling load and temperature difference.
-- **Real weather.** Load and plant simulations use a real EPW weather file, from the eModely library or uploaded by you. The engine never generates weather.
+- **Real weather.** Simulations use a real EPW weather file, from the eModely library or uploaded by you. The engine never generates weather.
 - **Your work, saved.** Plants, load profiles, curve sets and runs are stored in your account, so you can list them and return to them later. Plants, load profiles, curve sets, uploaded gain schedules and individual runs can be deleted. Deleting a run removes its stored results and expires its download links. Deleting a plant keeps its past runs readable. Deleting an uploaded gain schedule removes it from new work; past runs that used it stay readable. Hourly results are delivered as a CSV or Excel download link.
 
 ### Pipe calculation tools
@@ -82,6 +82,8 @@ The connector is all you need. As an optional alternative for Claude, this repos
   ```
 
 If you already added the connector, the plugin uses it, so there is nothing to remove. Engine updates never require a plugin update.
+
+The plugin version follows the eModely Engine version and changes only when the engine version changes, never when a feature is added.
 
 ### ChatGPT
 
@@ -245,7 +247,7 @@ Example requests:
 ## How eModely works with your assistant
 
 - **The connector carries its own guide.** Tool descriptions and working rules are served by engine.emodely.com and update with the engine, so every assistant follows the current guidance. The [AI guide](https://engine.emodely.com/ai) is a plain-text page you can share with any assistant to explain eModely before the connector is added.
-- **Real weather only.** For load and plant simulations, the assistant names the weather file it uses, normally before the first run, or in the results when you asked it to assume everything and the city match is clear. A nearby city is used only with your agreement.
+- **Real weather only.** The assistant names the weather file it uses, normally before the first run, or in the results when you asked it to assume everything and the city match is clear. A nearby city is used only with your agreement.
 - **Hourly data stays out of the chat.** Hourly results are delivered through an expiring download link that opens only after you sign in with your eModely account.
 - **Your data is yours.** Your plants, runs, curve sets and uploads belong to you and can be shown to you in full. The eModely chiller library's curves are confidential.
 - **Problem reports.** If a result looks wrong, ask the assistant to report it. It sends a private report to the eModely team only after you approve its contents.

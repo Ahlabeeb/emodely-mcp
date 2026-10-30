@@ -9,7 +9,7 @@
     {
       "name": "emodely-engine",
       "source": "./plugins/emodely-engine",
-      "description": "Engineering-grade energy simulation for buildings and districts with the eModely Engine: building loads, chiller and district cooling plants, thermal storage and chiller curves, with real weather data. Also supports pipe pressure drop and sizing."
+      "description": "Connects your assistant to the eModely Engine for building and district cooling design. All guidance comes from the connector. Requires an eModely account with active access."
     }
   ]
 }

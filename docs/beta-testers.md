@@ -42,7 +42,7 @@ We want to hear about anything that is wrong, confusing or slow, for example:
 - the assistant estimating numbers itself instead of running the engine;
 - problems with connecting, sign-in, upload or download.
 
-For each report, include the assistant and app you used, the date and time with your time zone, your prompt, what happened and what you expected, the weather file the assistant reported (for load and plant simulations), and any error message word for word.
+For each report, include the assistant and app you used, the date and time with your time zone, your prompt, what happened and what you expected, the weather file the assistant reported, and any error message word for word.
 
 ## 5. How to report
 
