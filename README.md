@@ -220,13 +220,13 @@ Choose the **Streamable HTTP** transport, enter `https://engine.emodely.com/mcp`
 
 Start a new chat with the connector switched on and say hello, or ask what eModely can do. The assistant shows a short welcome and offers three ways to start:
 
-- **Quick:** up to six questions, each with a recommended answer.
-- **Detailed:** step by step through each topic.
-- **Just assume:** you give the city and the size, and confirm whether the plant is new or existing and the weather file. The assistant assumes the rest and lists every assumption.
+- **Quick:** up to six questions on the plant details that matter most, each showing the typical value that applies.
+- **Detailed:** one topic per message, through every topic.
+- **Just assume:** you give the city, the plant size and, when no chillers are described, whether they are water-cooled or air-cooled, and confirm the weather file. The assistant treats the plant as a new design unless you say it is existing, assumes the rest and lists every assumption.
 
 You can also name your role: consultant or designer, developer, or operator. The assistant suggests a path.
 
-In Quick and Detailed, the assistant first asks whether the plant is new or existing and whether it is air-cooled or water-cooled, unless your request already makes this clear. These answers decide which questions follow.
+In Quick and Detailed, the assistant first confirms the city, the plant size and, when no chillers are described, whether they are water-cooled or air-cooled. It then asks about the missing plant details, including whether the plant is new or existing, one topic at a time, highest impact first, and shows the typical value that applies to each. Choose **Use typical** for any detail you do not know: that value is used and reported as assumed. Only the values you state are reported as entered.
 
 Tip: choose **Always allow** for eModely tools to avoid repeated approval prompts.
 
